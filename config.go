@@ -1,6 +1,10 @@
 package tpassword
 
-import "errors"
+import (
+	"crypto/rand"
+	"errors"
+	"math/big"
+)
 
 // TODO: Add comments
 
@@ -22,6 +26,7 @@ func defaultConfig(length int) config {
 	}
 }
 
+// TODO: **ENGLISH** COMMENTS
 func generateFromConfig(cfg config) (string, error) {
 	var charset string
 
@@ -47,5 +52,15 @@ func generateFromConfig(cfg config) (string, error) {
 		return "", errors.New("no one charset are selected")
 	}
 
-	return "", nil
+	// take randoms character with rand
+	result := make([]byte, cfg.length)
+	for i := range result {
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
+		if err != nil {
+			return "", err
+		}
+		result[i] = charset[n.Int64()]
+	}
+
+	return string(result), nil
 }
