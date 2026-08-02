@@ -1,4 +1,4 @@
-package tPassword
+package tpassword
 
 type config struct {
 	length    int
