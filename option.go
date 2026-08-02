@@ -4,24 +4,24 @@ type Option func(*config)
 
 func WithLowercase() Option {
 	return func(c *config) {
-		c.includeLowercase = true
+		c.lowercase = true
 	}
 }
 
 func WithUppercase() Option {
 	return func(c *config) {
-		c.includeUppercase = true
+		c.uppercase = true
 	}
 }
 
 func WithDigits() Option {
 	return func(c *config) {
-		c.includeDigits = true
+		c.digits = true
 	}
 }
 
 func WithSymbols() Option {
 	return func(c *config) {
-		c.includeSymbols = true
+		c.symbols = true
 	}
 }

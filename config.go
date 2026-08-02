@@ -1,19 +1,19 @@
 package tPassword
 
 type config struct {
-	length           int
-	includeLowercase bool
-	includeUppercase bool
-	includeDigits    bool
-	includeSymbols   bool
+	length    int
+	lowercase bool
+	uppercase bool
+	digits    bool
+	symbols   bool
 }
 
 func defaultConfig(length int) config {
 	return config{
-		length:           length,
-		includeLowercase: true,
-		includeDigits:    true,
-		includeUppercase: false,
-		includeSymbols:   false,
+		length:    length,
+		lowercase: true,
+		digits:    true,
+		uppercase: false,
+		symbols:   false,
 	}
 }
