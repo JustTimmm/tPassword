@@ -25,10 +25,7 @@ func defaultConfig(length int) config {
 func generateFromConfig(cfg config) (string, error) {
 	var charset string
 
-	if cfg.length <= 0 {
-		return "", errors.New("you try to generate a empty password")
-	}
-
+	// list of all characters define by the options of the lib
 	if cfg.lowercase {
 		charset += "abcdefghijklmnopqrstuvwxyz"
 	}
@@ -40,6 +37,14 @@ func generateFromConfig(cfg config) (string, error) {
 	}
 	if cfg.symbols {
 		charset += ".?!&#()$%+-=_-@"
+	}
+
+	// management of errors
+	if cfg.length <= 0 {
+		return "", errors.New("you try to generate a empty password")
+	}
+	if charset == "" {
+		return "", errors.New("no one charset are selected")
 	}
 
 	return "", nil
