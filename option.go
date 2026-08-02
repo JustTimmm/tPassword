@@ -1,5 +1,7 @@
 package tpassword
 
+// TODO: Add comments
+
 type Option func(*config)
 
 func WithLowercase() Option {
