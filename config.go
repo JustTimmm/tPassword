@@ -1,5 +1,7 @@
 package tpassword
 
+import "errors"
+
 // TODO: Add comments
 
 type config struct {
@@ -22,6 +24,10 @@ func defaultConfig(length int) config {
 
 func generateFromConfig(cfg config) (string, error) {
 	var charset string
+
+	if cfg.length <= 0 {
+		return "", errors.New("you try to generate a empty password")
+	}
 
 	if cfg.lowercase {
 		charset += "abcdefghijklmnopqrstuvwxyz"
