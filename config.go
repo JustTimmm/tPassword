@@ -19,3 +19,22 @@ func defaultConfig(length int) config {
 		symbols:   false,
 	}
 }
+
+func generateFromConfig(cfg config) (string, error) {
+	var charset string
+
+	if cfg.lowercase {
+		charset += "abcdefghijklmnopqrstuvwxyz"
+	}
+	if cfg.uppercase {
+		charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	}
+	if cfg.digits {
+		charset += "0123456789"
+	}
+	if cfg.symbols {
+		charset += ".?!&#()$%+-=_-@"
+	}
+
+	return "", nil
+}
