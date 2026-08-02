@@ -26,11 +26,10 @@ func defaultConfig(length int) config {
 	}
 }
 
-// TODO: **ENGLISH** COMMENTS
 func generateFromConfig(cfg config) (string, error) {
 	var charset string
 
-	// list of all characters define by the options of the lib
+	// list of characters allowed by the config options
 	if cfg.lowercase {
 		charset += "abcdefghijklmnopqrstuvwxyz"
 	}
@@ -44,15 +43,15 @@ func generateFromConfig(cfg config) (string, error) {
 		charset += ".?!&#()$%+-=_-@"
 	}
 
-	// management of errors
+	// error handling
 	if cfg.length <= 0 {
-		return "", errors.New("you try to generate a empty password")
+		return "", errors.New("cannot generate an empty password")
 	}
 	if charset == "" {
-		return "", errors.New("no one charset are selected")
+		return "", errors.New("no charset selected")
 	}
 
-	// take randoms character with rand
+	// pick randoms characters using crypto/rand
 	result := make([]byte, cfg.length)
 	for i := range result {
 		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
