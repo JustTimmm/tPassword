@@ -1,4 +1,4 @@
-package tpassword
+package tPassword
 
 import (
 	"crypto/rand"
