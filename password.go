@@ -34,3 +34,29 @@ func GenerateWithCustomCharset(length int, charset string) (string, error) {
 
 	return string(result), nil
 }
+
+func GenerateMulti(count, length int, options ...Option) ([]string, error) {
+	passwords := make([]string, count)
+	for i := range count {
+		password, err := Generate(length, options...)
+		if err != nil {
+			return nil, err
+		}
+		passwords[i] = password
+	}
+
+	return passwords, nil
+}
+
+func GenerateMultiWithCustomCharset(count, length int, charset string) ([]string, error) {
+	passwords := make([]string, count)
+	for i := range count {
+		password, err := GenerateWithCustomCharset(length, charset)
+		if err != nil {
+			return nil, err
+		}
+		passwords[i] = password
+	}
+
+	return passwords, nil
+}
