@@ -2,7 +2,6 @@ package tPassword
 
 import (
 	"crypto/rand"
-	"errors"
 	"math/big"
 )
 
@@ -45,10 +44,10 @@ func generateFromConfig(cfg config) (string, error) {
 
 	// error handling
 	if cfg.length <= 0 {
-		return "", errors.New("cannot generate an empty password")
+		return "", ErrInvalidLength
 	}
 	if charset == "" {
-		return "", errors.New("no charset selected")
+		return "", ErrEmptyCharset
 	}
 
 	// pick randoms characters using crypto/rand

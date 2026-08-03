@@ -16,6 +16,13 @@ func Generate(length int, options ...Option) (string, error) {
 }
 
 func GenerateWithCustomCharset(length int, charset string) (string, error) {
+	if length <= 0 {
+		return "", ErrInvalidLength
+	}
+	if charset == "" {
+		return "", ErrEmptyCharset
+	}
+
 	result := make([]byte, length)
 	for i := range result {
 		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
