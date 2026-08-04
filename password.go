@@ -1,10 +1,5 @@
 package tPassword
 
-import (
-	"crypto/rand"
-	"math/big"
-)
-
 // TODO: Add comments
 
 func Generate(length int, options ...Option) (string, error) {
@@ -23,16 +18,12 @@ func GenerateWithCustomCharset(length int, charset string) (string, error) {
 		return "", ErrEmptyCharset
 	}
 
-	result := make([]byte, length)
-	for i := range result {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
-		if err != nil {
-			return "", err
-		}
-		result[i] = charset[n.Int64()]
+	result, err := randomStringFromCharset(length, charset)
+	if err != nil {
+		return "", err
 	}
 
-	return string(result), nil
+	return result, nil
 }
 
 func GenerateMulti(count, length int, options ...Option) ([]string, error) {

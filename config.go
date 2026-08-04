@@ -1,10 +1,5 @@
 package tPassword
 
-import (
-	"crypto/rand"
-	"math/big"
-)
-
 // TODO: Add comments
 
 type config struct {
@@ -51,13 +46,9 @@ func generateFromConfig(cfg config) (string, error) {
 	}
 
 	// pick randoms characters using crypto/rand
-	result := make([]byte, cfg.length)
-	for i := range result {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
-		if err != nil {
-			return "", err
-		}
-		result[i] = charset[n.Int64()]
+	result, err := randomStringFromCharset(cfg.length, charset)
+	if err != nil {
+		return "", err
 	}
 
 	return string(result), nil
