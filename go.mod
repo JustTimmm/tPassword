@@ -1,3 +1,3 @@
-module github.com/JustTimmm/tPassword
+module github.com/JustTimmm/tPortal-Dev
 
 go 1.26
