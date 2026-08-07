@@ -4,23 +4,21 @@ package tPassword
 
 type Option func(*config)
 
-// Deprecated: Already true in the default config
-func WithLowercase() Option {
+func WithoutLowercase() Option {
 	return func(c *config) {
-		c.lowercase = true
+		c.lowercase = false
+	}
+}
+
+func WithoutDigits() Option {
+	return func(c *config) {
+		c.digits = false
 	}
 }
 
 func WithUppercase() Option {
 	return func(c *config) {
 		c.uppercase = true
-	}
-}
-
-// Deprecated: Already true in the default config
-func WithDigits() Option {
-	return func(c *config) {
-		c.digits = true
 	}
 }
 
