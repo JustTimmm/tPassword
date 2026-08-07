@@ -3,6 +3,7 @@ package tPassword
 import (
 	"crypto/rand"
 	"math/big"
+	"strings"
 )
 
 func randomStringFromCharset(length int, charset string) (string, error) {
@@ -16,4 +17,13 @@ func randomStringFromCharset(length int, charset string) (string, error) {
 	}
 
 	return string(result), nil
+}
+
+func removeChars(charset, toRemove string) string {
+	return strings.Map(func(r rune) rune {
+		if strings.ContainsRune(toRemove, r) {
+			return -1
+		}
+		return r
+	}, charset)
 }
