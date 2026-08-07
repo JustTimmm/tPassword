@@ -1,7 +1,5 @@
 package tPassword
 
-// TODO: Add comments
-
 type config struct {
 	length    int
 	lowercase bool
@@ -25,7 +23,6 @@ func defaultConfig(length int) config {
 func generateFromConfig(cfg config) (string, error) {
 	var charset string
 
-	// list of characters allowed by the config options
 	if cfg.lowercase {
 		charset += "abcdefghijklmnopqrstuvwxyz"
 	}
@@ -42,7 +39,6 @@ func generateFromConfig(cfg config) (string, error) {
 		charset = removeChars(charset, "O01lI")
 	}
 
-	// error handling
 	if cfg.length <= 0 {
 		return "", ErrInvalidLength
 	}
@@ -50,7 +46,6 @@ func generateFromConfig(cfg config) (string, error) {
 		return "", ErrEmptyCharset
 	}
 
-	// pick randoms characters using crypto/rand
 	result, err := randomStringFromCharset(cfg.length, charset)
 	if err != nil {
 		return "", err
