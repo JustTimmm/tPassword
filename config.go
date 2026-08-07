@@ -33,7 +33,7 @@ func generateFromConfig(cfg config) (string, error) {
 		charset += "0123456789"
 	}
 	if cfg.symbols {
-		charset += ".?!&#()$%+-=_-@"
+		charset += ".?!&#()$%+=_-@"
 	}
 	if cfg.ambiguous {
 		charset = removeChars(charset, "O01lI")
