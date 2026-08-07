@@ -16,6 +16,12 @@ func WithoutDigits() Option {
 	}
 }
 
+func WithoutAmbiguous() Option {
+	return func(c *config) {
+		c.ambiguous = true
+	}
+}
+
 func WithUppercase() Option {
 	return func(c *config) {
 		c.uppercase = true

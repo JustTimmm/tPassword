@@ -8,6 +8,7 @@ type config struct {
 	uppercase bool
 	digits    bool
 	symbols   bool
+	ambiguous bool
 }
 
 func defaultConfig(length int) config {
@@ -17,6 +18,7 @@ func defaultConfig(length int) config {
 		digits:    true,
 		uppercase: false,
 		symbols:   false,
+		ambiguous: false,
 	}
 }
 
@@ -35,6 +37,9 @@ func generateFromConfig(cfg config) (string, error) {
 	}
 	if cfg.symbols {
 		charset += ".?!&#()$%+-=_-@"
+	}
+	if cfg.ambiguous {
+		charset = removeChars(charset, "O01lI")
 	}
 
 	// error handling
