@@ -56,5 +56,5 @@ func generateFromConfig(cfg config) (string, error) {
 		return "", err
 	}
 
-	return string(result), nil
+	return result, nil
 }
